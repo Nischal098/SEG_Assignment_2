@@ -105,5 +105,24 @@ public class EchoServer extends AbstractServer
       System.out.println("ERROR - Could not listen for clients!");
     }
   }
+  
+  //**** Changed for E49 by N.S. and N.N.
+  public void clientConnected(ConnectionToClient client) {
+	  System.out.println("A new client has connected: IP address: " + client.getInetAddress());
+  }
+  
+  //**** Changed for E49 by N.S. and N.N.	
+  synchronized public void clientDisconnected(ConnectionToClient client) {
+	try {
+		client.close();
+	} catch (IOException e) {
+		clientException(client, e);
+	}
+  }
+  
+  public void clientException(ConnectionToClient client, Throwable exception) {
+	  System.out.println("The following client has disconnected: ID: " + client.getId());
+	  
+  }
 }
 //End of EchoServer class

@@ -8,6 +8,11 @@ import client.ChatClient;
 import common.*;
 import ocsf.client.*;
 
+//**** Changed for E49 by N.S. and N.N.	
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * This class constructs the UI for a chat client.  It implements the
  * chat interface in order to activate the display() method.
@@ -107,8 +112,8 @@ public class ClientConsole implements ChatIF
   public static void main(String[] args) 
   {
     String host = "";
-    int port = 0;  //The port number
-
+    int port = 0;  //The port number    	
+    
     try
     {
       host = args[0];
@@ -117,8 +122,21 @@ public class ClientConsole implements ChatIF
     {
       host = "localhost";
     }
-    ClientConsole chat= new ClientConsole(host, DEFAULT_PORT);
-    chat.accept();  //Wait for console data
+    
+    //**** Changed for E49 by N.S. and N.N.	
+    ClientConsole chat;
+    try {
+    	port = Integer.parseInt(args[1]);    	
+    	chat= new ClientConsole(host, port);
+    	chat.accept();  //Wait for console data
+    }
+    catch (ArrayIndexOutOfBoundsException e) {
+    	chat= new ClientConsole(host, DEFAULT_PORT);
+    	chat.accept();  //Wait for console data
+    }
+    catch (NumberFormatException e) {
+    	System.out.println("Port Needs to be a number");
+    }  
   }
 }
 //End of ConsoleChat class

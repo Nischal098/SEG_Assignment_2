@@ -90,5 +90,17 @@ public class ChatClient extends AbstractClient
     catch(IOException e) {}
     System.exit(0);
   }
+  
+  // **** Changed for E49 by N.S. and N.N.
+  public void connectionClosed() {
+	  System.out.println("The server has shut down. The client has been shut down for this reason.");
+  }
+  
+  //**** Changed for E49 by N.S. and N.N.
+  public void connectionException(Exception exception) {
+	  if (exception instanceof java.net.SocketException) {
+		  quit();
+	  }
+  }
 }
 //End of ChatClient class
