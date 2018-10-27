@@ -1,6 +1,0 @@
-C:\Users\Nischal>jps
-5184 EchoServer
-6768 Jps
-7216
-11384 ClientConsole
-7544 ClientConsole
